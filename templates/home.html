@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Risk Prediction</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 30px 16px; }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h2 { text-align: center; color: #1a202c; margin-bottom: 24px; font-size: 20px; }
+        label { display: block; font-size: 13px; font-weight: bold; color: #4a5568; margin-bottom: 4px; }
+        input {
+            width: 100%;
+            padding: 9px 12px;
+            margin-bottom: 16px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #2d3748;
+        }
+        input:focus { outline: none; border-color: #2b6cb0; }
+        .hint { font-size: 11px; color: #a0aec0; margin-top: -12px; margin-bottom: 14px; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2b6cb0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover { background: #2c5282; }
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .high   { background: #fff5f5; border: 1px solid #fc8181; }
+        .medium { background: #fffaf0; border: 1px solid #f6ad55; }
+        .low    { background: #f0fff4; border: 1px solid #68d391; }
+        .result-label { font-size: 13px; color: #718096; margin-bottom: 6px; }
+        .result-score { font-size: 36px; font-weight: bold; margin-bottom: 6px; }
+        .high   .result-score { color: #c53030; }
+        .medium .result-score { color: #c05621; }
+        .low    .result-score { color: #276749; }
+        .risk-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .high   .risk-badge { background: #fed7d7; color: #c53030; }
+        .medium .risk-badge { background: #feebc8; color: #c05621; }
+        .low    .risk-badge { background: #c6f6d5; color: #276749; }
+        .back { display: block; text-align: center; margin-top: 20px; color: #2b6cb0; font-size: 13px; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Applicant Details</h2>
+
+    <form action="/predictdata" method="POST">
+
+        <label>Age</label>
+        <input type="number" name="age" min="18" max="100" placeholder="e.g. 35" required>
+
+        <label>Annual Income (₹)</label>
+        <input type="number" name="annual_income" min="0" placeholder="e.g. 800000" required>
+        <p class="hint">Enter full amount in rupees</p>
+
+        <label>Credit Score</label>
+        <input type="number" name="credit_score" min="300" max="850" placeholder="e.g. 650" required>
+        <p class="hint">Range: 300 – 850</p>
+
+        <label>Loan Amount (₹)</label>
+        <input type="number" name="loan_amount" min="0" placeholder="e.g. 500000" required>
+
+        <label>Employment Years</label>
+        <input type="number" name="employment_years" min="0" placeholder="e.g. 5" required>
+
+        <label>Existing Debt (₹)</label>
+        <input type="number" name="existing_debt" min="0" placeholder="e.g. 200000" required>
+
+        <label>Loan Term (Years)</label>
+        <input type="number" name="loan_term_years" min="1" max="30" placeholder="e.g. 5" required>
+
+        <button type="submit">Predict Risk Score</button>
+    </form>
+
+    {% if results is not none %}
+        {% if risk_label == "High Risk" %}
+            <div class="result high">
+        {% elif risk_label == "Medium Risk" %}
+            <div class="result medium">
+        {% else %}
+            <div class="result low">
+        {% endif %}
+            <div class="result-label">Default Risk Score</div>
+            <div class="result-score">{{ results }}%</div>
+            <span class="risk-badge">{{ risk_label }}</span>
+        </div>
+    {% endif %}
+
+    <a class="back" href="/">← Back to Home</a>
+</div>
+</body>
+</html>

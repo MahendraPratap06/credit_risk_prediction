@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: creditrisk
+Version: 0.0.1
+Author: Mahendra
+Author-email: rkartike61@gmail.com
+Requires-Dist: flask
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: catboost
+Requires-Dist: xgboost
+Requires-Dist: dill
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist

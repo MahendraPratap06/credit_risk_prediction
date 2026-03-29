@@ -1,0 +1,14 @@
+[2026-03-30 04:26:09,249] 25 root - INFO - Entered the data ingestion method
+[2026-03-30 04:26:09,261] 28 root - INFO - Read the credit risk dataset as dataframe
+[2026-03-30 04:26:09,265] 32 root - INFO - Converted target column Grant_Loan: Yes->1, No->0
+[2026-03-30 04:26:09,267] 37 root - INFO - Saved raw data to artifacts
+[2026-03-30 04:26:09,267] 39 root - INFO - Train test split initiated
+[2026-03-30 04:26:09,271] 45 root - INFO - Ingestion of the data is complete
+[2026-03-30 04:26:09,272] 63 root - INFO - Reading train and test data completed
+[2026-03-30 04:26:09,272] 64 root - INFO - Obtaining preprocessing object
+[2026-03-30 04:26:09,272] 45 root - INFO - Numerical columns standard scaling pipeline created
+[2026-03-30 04:26:09,272] 51 root - INFO - Numerical columns: ['age', 'annual_income', 'credit_score', 'loan_amount', 'employment_years', 'existing_debt', 'loan_term_years']
+[2026-03-30 04:26:09,272] 76 root - INFO - Applying preprocessing on training and test dataframes
+[2026-03-30 04:26:09,275] 84 root - INFO - Saved preprocessing object
+[2026-03-30 04:26:09,276] 28 root - INFO - Split training and test input data
+[2026-03-30 04:26:59,478] 90 root - INFO - Best model: CatBoosting Regressor with R2: 0.7916502344712579
