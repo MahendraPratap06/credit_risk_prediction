@@ -2,7 +2,7 @@ import os
 import sys
 import dill
 import numpy as np
-from sklearn.metrics import r2_score
+from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GridSearchCV
 
 from src.exception import CustomException
@@ -34,8 +34,8 @@ def evaluate_model(x_train, y_train, x_test, y_test, models, param):
             y_train_pred = model.predict(x_train)
             y_test_pred = model.predict(x_test)
 
-            train_model_score = r2_score(y_train, y_train_pred)
-            test_model_score = r2_score(y_test, y_test_pred)
+            train_model_score = roc_auc_score(y_train, y_train_pred)
+            test_model_score = roc_auc_score(y_test, y_test_pred)
 
             report[model_name] = test_model_score
 

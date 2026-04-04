@@ -1,0 +1,92 @@
+[2026-04-05 03:11:56,585] 97 werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1080
+ * Running on http://192.0.0.2:1080
+[2026-04-05 03:11:56,586] 97 werkzeug - INFO - [33mPress CTRL+C to quit[0m
+[2026-04-05 03:12:09,953] 97 werkzeug - INFO - 127.0.0.1 - - [05/Apr/2026 03:12:09] "GET / HTTP/1.1" 200 -
+[2026-04-05 03:12:10,034] 97 werkzeug - INFO - 127.0.0.1 - - [05/Apr/2026 03:12:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2026-04-05 03:12:11,620] 97 werkzeug - INFO - 127.0.0.1 - - [05/Apr/2026 03:12:11] "GET /predictdata HTTP/1.1" 200 -
+[2026-04-05 03:13:00,196] 875 application - ERROR - Exception on /predictdata [POST]
+Traceback (most recent call last):
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py", line 51, in load_object
+    return dill.load(file_obj)
+           ~~~~~~~~~^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.13/site-packages/dill/_dill.py", line 289, in load
+    return Unpickler(file, ignore=ignore, **kwds).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/anaconda3/lib/python3.13/site-packages/dill/_dill.py", line 444, in load
+    obj = StockUnpickler.load(self)
+  File "/opt/anaconda3/lib/python3.13/site-packages/dill/_dill.py", line 434, in find_class
+    return StockUnpickler.find_class(self, module, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'catboost'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/component/predict_pipeline.py", line 16, in predict
+    model       = load_object(os.path.join("artifacts", "model.pkl"))
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py", line 53, in load_object
+    raise CustomException(e, sys)
+src.exception.CustomException: Error occured in python script name [/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py] line number [51] error message [No module named 'catboost']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/application.py", line 35, in predict_datapoint
+    results = predict_pipeline.predict(pred_df)
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/component/predict_pipeline.py", line 23, in predict
+    raise CustomException(e, sys)
+src.exception.CustomException: Error occured in python script name [/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/component/predict_pipeline.py] line number [16] error message [Error occured in python script name [/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py] line number [51] error message [No module named 'catboost']]
+[2026-04-05 03:13:00,205] 97 werkzeug - INFO - 127.0.0.1 - - [05/Apr/2026 03:13:00] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -
+[2026-04-05 03:15:01,828] 875 application - ERROR - Exception on /predictdata [POST]
+Traceback (most recent call last):
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py", line 51, in load_object
+    return dill.load(file_obj)
+           ~~~~~~~~~^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.13/site-packages/dill/_dill.py", line 289, in load
+    return Unpickler(file, ignore=ignore, **kwds).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/anaconda3/lib/python3.13/site-packages/dill/_dill.py", line 444, in load
+    obj = StockUnpickler.load(self)
+  File "/opt/anaconda3/lib/python3.13/site-packages/dill/_dill.py", line 434, in find_class
+    return StockUnpickler.find_class(self, module, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'catboost'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/component/predict_pipeline.py", line 16, in predict
+    model       = load_object(os.path.join("artifacts", "model.pkl"))
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py", line 53, in load_object
+    raise CustomException(e, sys)
+src.exception.CustomException: Error occured in python script name [/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py] line number [51] error message [No module named 'catboost']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/anaconda3/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/application.py", line 35, in predict_datapoint
+    results = predict_pipeline.predict(pred_df)
+  File "/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/component/predict_pipeline.py", line 23, in predict
+    raise CustomException(e, sys)
+src.exception.CustomException: Error occured in python script name [/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/component/predict_pipeline.py] line number [16] error message [Error occured in python script name [/Users/mahendrapratap/Desktop/mlproject/credit_risk/src/utils.py] line number [51] error message [No module named 'catboost']]
+[2026-04-05 03:15:01,831] 97 werkzeug - INFO - 127.0.0.1 - - [05/Apr/2026 03:15:01] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -

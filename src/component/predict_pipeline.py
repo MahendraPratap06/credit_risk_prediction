@@ -13,19 +13,15 @@ class PredictPipeline:
 
     def predict(self, features):
         try:
-            model_path = os.path.join("artifacts", "model.pkl")
-            preprocessor_path = os.path.join("artifacts", "preprocessor.pkl")
-
-            model = load_object(file_path=model_path)
-            preprocessor = load_object(file_path=preprocessor_path)
-
+            model       = load_object(os.path.join("artifacts", "model.pkl"))
+            preprocessor = load_object(os.path.join("artifacts", "preprocessor.pkl"))
             data_scaled = preprocessor.transform(features)
-            preds = model.predict(data_scaled)
-
-            # Clamp to [0,1] since regression can predict outside this range
-            preds = np.clip(preds, 0, 1)
-            return preds
-
+            
+            if hasattr(model, "predict_proba"):
+                proba = model.predict_proba(data_scaled)[:, 1]
+            else:
+                proba = model.predict(data_scaled)
+            return proba
         except Exception as e:
             raise CustomException(e, sys)
 

@@ -1,4 +1,4 @@
-Metadata-Version: 2.4
+Metadata-Version: 2.1
 Name: creditrisk
 Version: 0.0.1
 Author: Mahendra
@@ -12,6 +12,3 @@ Requires-Dist: xgboost
 Requires-Dist: dill
 Requires-Dist: matplotlib
 Requires-Dist: seaborn
-Dynamic: author
-Dynamic: author-email
-Dynamic: requires-dist
